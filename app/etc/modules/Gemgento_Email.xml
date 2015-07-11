@@ -1,0 +1,13 @@
+<config>
+    <modules>
+
+        <Gemgento_Email>
+            <active>true</active>
+            <codePool>community</codePool>
+            <depends>
+                <Gemgento_Push />
+            </depends>
+        </Gemgento_Email>
+
+    </modules>
+</config>

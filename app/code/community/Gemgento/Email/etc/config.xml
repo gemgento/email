@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Gemgento_Email>
+            <version>0.0.1</version>
+        </Gemgento_Email>
+    </modules>
+    <global>
+        <models>
+            <core>
+                <rewrite>
+                    <email_template>Gemgento_Email_Model_Email_Template</email_template>
+                </rewrite>
+            </core>
+        </models>
+        <helpers>
+            <gemgento_email>
+                <class>Gemgento_Email_Helper</class>
+            </gemgento_email>
+        </helpers>
+    </global>
+    
+</config>
+
+
