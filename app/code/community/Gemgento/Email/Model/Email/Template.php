@@ -44,7 +44,7 @@ class Gemgento_Email_Model_Email_Template extends Mage_Core_Model_Email_Template
             $vars['store'] = Mage::app()->getStore($storeId);
         }
 
-        if (Mage::getStoreConfig("gemgento_email/emails/enabled")) {
+        if (Mage::getStoreConfig("gemgento_email/settings/enabled")) {
             $this->setSentSuccess($this->gemgentoSend($email, $name, $vars));
         } else {
             $this->setSentSuccess($this->send($email, $name, $vars));

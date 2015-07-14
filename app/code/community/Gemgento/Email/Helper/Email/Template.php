@@ -8,7 +8,7 @@ class Gemgento_Email_Helper_Email_Template extends Mage_Core_Helper_Abstract
     }
 
     public function send($path, $data) {
-        Mage::getModel('gemgento_push/observer')->email('POST', $path, '', $data);
+        Mage::getModel('gemgento_push/observer')->push('POST', $path, '', $data);
     }
 
     public function recipientStrings($emails, $names = []) {
