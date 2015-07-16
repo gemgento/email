@@ -94,6 +94,12 @@ class Gemgento_Email_Model_Email_Template extends Mage_Core_Model_Email_Template
             case (strpos($code, 'sales_email_shipment') !== false):
                 $data['order'] = $vars['order']->toArray();
                 $data['shipment'] = $vars['shipment']->toArray();
+
+                $data['tracks'] = array();
+                foreach($vars['shipment']->getAllTracks() as $track) {
+                    $data['tracks'][] = $track->toArray();
+                }
+
                 Mage::helper('gemgento_email/email_template')->sendSalesEmail('shipments', $data);
                 break;
 
