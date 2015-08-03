@@ -11,15 +11,27 @@ class Gemgento_Email_Helper_Email_Template extends Mage_Core_Helper_Abstract
         Mage::getModel('gemgento_push/observer')->push('POST', $path, '', $data);
     }
 
-    public function recipientStrings($emails, $names = []) {
+    public function recipientStrings($emails, $names = [])
+    {
         $recipients = array();
 
-        foreach($emails as $key=>$email) {
+        if (is_array($emails)) {
 
-            if (!empty($names[$key])){
-                $recipients = "\"{$names[$key]}\" <{$email}>";
+            foreach ($emails as $key => $email) {
+
+                if (!empty($names[$key])) {
+                    $recipients[] = "\"{$names[$key]}\" <{$email}>";
+                } else {
+                    $recipients[] = $email;
+                }
+            }
+
+        } else {
+
+            if (!empty($names)) {
+                $recipients[] = "\"{$names}\" <$emails>";
             } else {
-                $recipients[] = $email;
+                $recipients[] = $emails;
             }
         }
 
