@@ -57,6 +57,10 @@ class Gemgento_Email_Model_Email_Template extends Mage_Core_Model_Email_Template
         $headers = $this->getMail()->getHeaders();
         $code = is_numeric($this->getTemplateId()) ? $this->getOrigTemplateCode()  : $this->getTemplateId();
 
+        if (Mage::helper('gemgento_email/email_template')->isExcluded($code)) {
+            return $this->send($emails, $names, $vars);
+        }
+
         # aggregate header information
         $data = array(
             'recipients' => array(

@@ -38,4 +38,11 @@ class Gemgento_Email_Helper_Email_Template extends Mage_Core_Helper_Abstract
         return $recipients;
     }
 
+    public function isExcluded($code) {
+        $excludedCodes = explode(',', Mage::getStoreConfig("gemgento_email/settings/excluded_codes"));
+        $excludedCodes = array_map('trim', $excludedCodes);
+
+        return in_array($code, $excludedCodes);
+    }
+
 }
