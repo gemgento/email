@@ -45,4 +45,18 @@ class Gemgento_Email_Helper_Email_Template extends Mage_Core_Helper_Abstract
         return in_array($code, $excludedCodes);
     }
 
+    public function code($template) {
+        $code = $template->getTemplateId();
+
+        if (is_numeric($code)) {
+            $code = $template->getOrigTemplateCode();
+        }
+
+        if (empty($code)) {
+            $code = $template->getTemplateCode();
+        }
+
+        return $code;
+    }
+
 }

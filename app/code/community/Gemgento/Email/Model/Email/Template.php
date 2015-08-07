@@ -54,19 +54,20 @@ class Gemgento_Email_Model_Email_Template extends Mage_Core_Model_Email_Template
     }
 
     private function gemgentoSend($emails, $names, $vars){
-        $headers = $this->getMail()->getHeaders();
-        $code = is_numeric($this->getTemplateId()) ? $this->getOrigTemplateCode()  : $this->getTemplateId();
+        $code = Mage::helper('gemgento_email/email_template')->code($this);
 
         if (Mage::helper('gemgento_email/email_template')->isExcluded($code)) {
             return $this->send($emails, $names, $vars);
         }
 
+        $headers = $this->getMail()->getHeaders();
+
         # aggregate header information
         $data = array(
             'recipients' => array(
-                  'to' => Mage::helper('gemgento_email/email_template')->recipientStrings($emails, $names),
-                  'cc' => array(),
-                  'bcc' => array()
+                'to' => Mage::helper('gemgento_email/email_template')->recipientStrings($emails, $names),
+                'cc' => array(),
+                'bcc' => array()
             ),
             'sender' => "\"{$this->getSenderName()}\" <{$this->getSenderEmail()}>"
         );
